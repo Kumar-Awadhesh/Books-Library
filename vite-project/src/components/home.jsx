@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom" 
 import axios from 'axios';
 import '../App.css'
 
@@ -7,10 +8,12 @@ function Library(){
     const [books, setBooks] = useState([]); // set books state as empty array.
     const [loading, setLoading] = useState(true); // set loading state as true by default.
     const [auth_btn, setAuth_btn] = useState(true); // set auth_btn state as true by default.
+    const navigate = useNavigate();
 
 
-    const signupPage= () => {
+    const signupPage = async() => {
 
+        navigate('/signup')
     }
 
     const loginPage = () => {
@@ -27,6 +30,7 @@ function Library(){
     useEffect(() => {
         fetchBooks()
     }, [])
+
 
     return(
         <>
@@ -63,7 +67,8 @@ function Library(){
                             <div className="read-btn-container"><button>Want to read.</button></div>
                         </div>
                     </div>
-                ))
+                )) ||
+                <h2>Loading...</h2>
                 }
             </div>
         </main>
