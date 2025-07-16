@@ -25,7 +25,7 @@ function Library(){
     }
 
     const fetchBooks = async() => {
-        const book = await axios.get("http://localhost:3211/books")
+        const book = await axios.get("https://books-library-p0pv.onrender.com/books")
         console.log(book.data.book)
         setBooks(book.data.book)
         setLoading(false);
@@ -94,7 +94,7 @@ function Library(){
                 books.map((book, index) => (
                     <div className="book-container" key={index}>
                         <div>
-                            <div className="cover-img-container"><img src={`http://localhost:3211${book.image}`} alt="cover-image" /></div>
+                            <div className="cover-img-container"><img src={`https://books-library-p0pv.onrender.com${book.image}`} alt="cover-image" /></div>
                             <div className="book-card">
                                 <h2>{book.title}</h2>
                                 <p>by {book.author}</p>
