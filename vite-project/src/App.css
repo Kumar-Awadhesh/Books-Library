@@ -11,8 +11,9 @@
 
 .navbar{
   position: fixed;
-  width: 98%;
+  width: 97.3%;
   display: flex;
+  margin: auto;
   justify-content: space-between;
   padding: 20px;
   align-items: center;
@@ -29,10 +30,25 @@
   width: 40px;
 }
 
+.btn-container{
+  margin-right: 20px;
+}
+
+.btn-container>button{
+  font-size: medium;
+  border: none;
+  outline: none;
+}
+
+.btn-container>button:hover{
+  cursor: pointer;
+}
 
 .book-container{
   padding: 20px;
-  border: 0.5px solid lightgrey;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* border: 0.5px solid lightgrey; */
 }
 
 .book-container>div{
@@ -68,7 +84,7 @@
   outline: none;
 }
 
-.signupPage-container{
+.signupPage-container, .loginPage-container{
   width: 50%;
   margin: auto;
   margin-top: 10%;
@@ -77,13 +93,13 @@
   border: 1px solid;
 }
 
-.signup-form{
+.signup-form, .login-form-container{
   margin: auto;
   margin-top: 50px;
   padding: 50px 0 50px 0;
 }
 
-.signup-form>input{
+.signup-form>input, .login-form-container>input{
   width: 500px;
   height: 40px;
   padding-left: 10px;
@@ -94,11 +110,11 @@
   background-color: rgb(237, 235, 235);
 }
 
-.signup-form>input:focus{
+.signup-form>input:focus, .login-form-container>input:focus{
   border: 0.5px solid lightgreen;
 }
 
-.signup-form>button{
+.signup-form>button, .login-form-container>button{
   width: 500px;
   height: 40px;
   padding: 5px;
@@ -109,8 +125,18 @@
   background-color: lightgreen;
 }
 
-.signup-form>button:hover{
+.signup-form>button:hover, .login-form-container>button:hover{
   cursor: pointer;
   color: whitesmoke;
   background-color: green;
+}
+
+
+.user-name{
+  display: flex;
+  gap: 5px;
+}
+
+.user-name>img{
+  width: 30px;
 }
