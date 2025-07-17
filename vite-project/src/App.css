@@ -137,6 +137,29 @@
   gap: 5px;
 }
 
+.user-name:hover{
+  cursor: pointer;
+}
+
 .user-name>img{
   width: 30px;
 }
+
+.profile-view{
+  position: relative;
+  width: 100px;
+  border: 1px solid;
+}
+
+.profile-view>p:hover, .profile-view>button{
+  cursor: pointer;
+}
+
+.profile-view>button{
+  width: 100%;
+  text-align: right;
+  border: none;
+  outline: none;
+}
+
+.profile-view{}

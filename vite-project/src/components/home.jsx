@@ -11,6 +11,7 @@ function Library(){
     const [auth_btn, setAuth_btn] = useState(true); // set auth_btn state as true by default.
     const [profile, setProfile] = useState(false) // set profile as false.
     const [username, setUsername] = useState("");
+    const [viewProfile, setViewProfile] = useState(false);
     const navigate = useNavigate();
 
 
@@ -26,7 +27,6 @@ function Library(){
 
     const fetchBooks = async() => {
         const book = await axios.get("https://books-library-p0pv.onrender.com/books")
-        console.log(book.data.book)
         setBooks(book.data.book)
         setLoading(false);
     }
@@ -39,7 +39,7 @@ function Library(){
        try {
          const decode = jwtDecode(token);
          const current_time = Date.now() / 1000;
-         decode.exp < current_time
+         return decode.exp < current_time
        }
         catch (err) {
             return true;
@@ -57,9 +57,19 @@ function Library(){
         else{
             localStorage.removeItem("user");
             setProfile(false);
-            setAuth_btn(true)
+            setAuth_btn(true);
+            setUsername("");
         }
     },[])
+
+
+    const userLogout = () => {
+        localStorage.removeItem("user");
+        setProfile(false);
+        setAuth_btn(true);
+        setUsername("");
+    }
+
 
     return(
         <>
@@ -81,9 +91,19 @@ function Library(){
             }
             {
             profile &&
-            <div className="user-name">
-                <img src="https://cdn-icons-png.freepik.com/512/694/694652.png" alt="profile-icon" />
-                <h4>{username}</h4>
+            <div className="profile-container">
+                <div className="user-name" onClick={(()=>setViewProfile(true))}>
+                    <img src="https://cdn-icons-png.freepik.com/512/694/694652.png" alt="profile-icon" />
+                    <h4>{username}</h4>
+                </div>
+                {
+                    viewProfile &&
+                    <div className="profile-view">
+                        <button onClick={(()=>setViewProfile(false))}>x</button>
+                        <p>My Books</p>
+                        <p onClick={userLogout}>Logout</p>
+                    </div>
+                }
             </div>
             }
             </nav>

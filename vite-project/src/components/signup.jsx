@@ -20,13 +20,18 @@ function Authentication(){
             alert("all fields mandatory !")
             return;
         }
-
-        const register = await axios.post("https://books-library-p0pv.onrender.com/auth/register", userData)
-        alert(register.data.msg);
-        setName("");
-        setEmail("")
-        setPassword("");
-        navigate('/')
+    
+        try {
+            const register = await axios.post("https://books-library-p0pv.onrender.com/auth/register", userData)
+            alert(register.data.msg);
+            setName("");
+            setEmail("")
+            setPassword("");
+            navigate('/')
+        } 
+        catch (err) {
+            console.log("catch error", err)    
+        }
     }
 
     return(
