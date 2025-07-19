@@ -70,6 +70,37 @@ function Library(){
         setUsername("");
     }
 
+    const myBookPage = () => {
+        navigate('/MyBook');
+    }
+
+    const addBookToRead = async(book) => {
+        const myBook = {
+            title:book.title,
+            status:book.availability,
+            rating:4
+        }
+
+        const myBookToken = JSON.parse(localStorage.getItem("user"))
+
+        try {
+            if(myBookToken === null){
+                alert("PLease Login !");
+                return;
+            }
+            
+            const addBook = await axios.post("https://books-library-p0pv.onrender.com/addBook", myBook, {
+                headers:{
+                    Authorization: `Bearer ${myBookToken?.token}`
+                }
+            })
+            alert(addBook.data.msg);
+        } 
+        catch (err) {
+            console.log("catch error", err)    
+        }   
+    }
+
 
     return(
         <>
@@ -100,7 +131,7 @@ function Library(){
                     viewProfile &&
                     <div className="profile-view">
                         <button onClick={(()=>setViewProfile(false))}>x</button>
-                        <p>My Books</p>
+                        <p onClick={myBookPage}>My Books</p>
                         <p onClick={userLogout}>Logout</p>
                     </div>
                 }
@@ -120,7 +151,7 @@ function Library(){
                                 <p>by {book.author}</p>
                                 <p>Available: {book.availability}</p>
                             </div>
-                            <div className="read-btn-container"><button>Want to read.</button></div>
+                            <div className="read-btn-container"><button onClick={()=>addBookToRead(book)}>Want to read.</button></div>
                         </div>
                     </div>
                 )) ||

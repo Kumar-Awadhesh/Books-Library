@@ -29,13 +29,14 @@ const Login = () => {
         }
         const user = {
             name:loginData.data.user.name,
+            userId:loginData.data.user._id,
             token:loginData.data.token
         }
         localStorage.setItem("user", JSON.stringify(user));
         alert("Login Successfully!");
         setEmail("");
         setPassword("")
-        console.log(user.name)
+        console.log(user)
         navigate("/")
         return;
     }
